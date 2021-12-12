@@ -1,9 +1,10 @@
 const env = {
     database: 'mysqlbase',
-    username: 'boyphongsakorn',
-    password: 'team1556th',
-    host: '192.168.31.210',
-    dialect: 'mysql',
+    username: 'root',
+    password: 'Team1556th_',
+    host: '192.168.31.227',
+    //dialect: 'mysql',
+    dialect: 'mariadb',
     pool: {
       max: 5,
       min: 0,
