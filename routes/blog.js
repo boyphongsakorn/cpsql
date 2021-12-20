@@ -57,9 +57,9 @@ route.get('/find/page/:pagenumber', async (req, res, next) => {
 route.get('/find/all/count', async (req, res, next) => {
   console.log('body::==', req.body);
   console.log('params::==', req.params);
-  const blogs = await Blog.findAndCountAll({});
+  const blogs = await Blog.count();
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.json(blogs.count);
+  res.json(blogs);
 });
 
 //create blog
