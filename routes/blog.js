@@ -59,7 +59,7 @@ route.get('/find/all/count', async (req, res, next) => {
   console.log('params::==', req.params);
   const blogs = await Blog.findAndCountAll({});
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.json(blogs);
+  res.json(blogs.count);
 });
 
 //create blog
