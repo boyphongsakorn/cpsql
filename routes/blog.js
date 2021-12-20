@@ -48,7 +48,7 @@ route.get('/find/all', async (req, res, next) => {
 route.get('/find/page/:pagenumber', async (req, res, next) => {
   console.log('body::==', req.body);
   console.log('params::==', req.params);
-  const blogs = await Blog.findAll({offset: (req.params.pagenumber-1)*25,limit:25});
+  const blogs = await Blog.findAll({offset: (req.params.pagenumber-1)*40,limit:40});
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.json(blogs);
 });
