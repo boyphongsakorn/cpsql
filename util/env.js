@@ -3,8 +3,8 @@ const env = {
     username: 'root',
     password: 'Team1556th_',
     host: '192.168.31.210',
-    dialect: 'mysql',
-    //dialect: 'mariadb',
+    //dialect: 'mysql',
+    dialect: 'mariadb',
     pool: {
       max: 5,
       min: 0,
