@@ -56,6 +56,7 @@ route.get('/find/user/:userid/:pagenumber', async (req, res, next) => {
 route.get('/find/user/:userid/count', async (req, res, next) => {
   console.log('body::==', req.body);
   console.log('params::==', req.params);
+  const userId = req.params.userid;
   const blogs = await Blog.count({
     where: {
       user: userId
