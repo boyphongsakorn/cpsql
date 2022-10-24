@@ -35,6 +35,24 @@ route.get('/find/user/:userid', async (req, res, next) => {
   res.json(blogs);
 });
 
+route.get('/find/user/:userid/:pagenumber', async (req, res, next) => {
+  console.log('body::==', req.body);
+  console.log('params::==', req.params);
+  const userId = req.params.userid;
+  let blogs = {};
+  if (userId) {
+    blogs = await Blog.findAll({
+      where: {
+        user: userId
+      },
+      offset: (req.params.pagenumber-1)*40,
+      limit:40
+    });
+  }
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.json(blogs);
+});
+
 // get blogs all
 route.get('/find/all', async (req, res, next) => {
   console.log('body::==', req.body);
