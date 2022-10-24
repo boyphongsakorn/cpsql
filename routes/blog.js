@@ -53,19 +53,6 @@ route.get('/find/user/:userid/:pagenumber', async (req, res, next) => {
   res.json(blogs);
 });
 
-route.get('/find/user/:userid/count', async (req, res, next) => {
-  console.log('body::==', req.body);
-  console.log('params::==', req.params);
-  const userId = req.params.userid;
-  const blogs = await Blog.count({
-    where: {
-      user: userId
-    }
-  });
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.json(blogs);
-});
-
 // get blogs all
 route.get('/find/all', async (req, res, next) => {
   console.log('body::==', req.body);
@@ -89,6 +76,19 @@ route.get('/find/all/count', async (req, res, next) => {
   console.log('body::==', req.body);
   console.log('params::==', req.params);
   const blogs = await Blog.count();
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.json(blogs);
+});
+
+route.get('/find/all/count/:userid', async (req, res, next) => {
+  console.log('body::==', req.body);
+  console.log('params::==', req.params);
+  const userId = req.params.userid;
+  const blogs = await Blog.count({
+    where: {
+      user: userId
+    }
+  });
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.json(blogs);
 });
