@@ -117,7 +117,7 @@ route.get('/find/xyz/:x1/:y1/:z1/:x2/:y2/:z2/:pagenumber', async (req, res, next
     res.json(blogs);
 });
 
-route.get('/find/xyz/count/:x1/:y1/:z1/:x2/:y2/:z2', async (req, res, next) => {
+route.get('/find/count/xyz/:x1/:y1/:z1/:x2/:y2/:z2', async (req, res, next) => {
   const { Op } = require('sequelize');
   console.log('body::==', req.body);
   console.log('params::==', req.params);
