@@ -62,6 +62,55 @@ route.get('/find/all', async (req, res, next) => {
   res.json(blogs);
 });
 
+//get blogs by using column between x1,y1,z1 and x2,y2,z2
+route.get('/find/xyz/:x1/:y1/:z1/:x2/:y2/:z2', async (req, res, next) => {
+  const { Op } = require('sequelize');
+  console.log('body::==', req.body);
+  console.log('params::==', req.params);
+    const blogs = await Blog.findAll({
+      where: {
+        // x: {
+        //   [Op.between]: [req.params.x1, req.params.x2]
+        // },
+        // y: {
+        //   [Op.between]: [req.params.y1, req.params.y2]
+        // },
+        // z: {
+        //   [Op.between]: [req.params.z1, req.params.z2]
+        // }
+        [Op.or]: [
+          { x: { [Op.between]: [req.params.x1, req.params.x2] } },
+          { y: { [Op.between]: [req.params.y1, req.params.y2] } },
+          { z: { [Op.between]: [req.params.z1, req.params.z2] } }
+        ]
+      },
+    });
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.json(blogs);
+});
+
+route.get('/find/xyz/:x1/:y1/:z1/:x2/:y2/:z2/:pagenumber', async (req, res, next) => {
+  console.log('body::==', req.body);
+  console.log('params::==', req.params);
+    const blogs = await Blog.findAll({
+      where: {
+        x: {
+          [Op.between]: [req.params.x1, req.params.x2]
+        },
+        y: {
+          [Op.between]: [req.params.y1, req.params.y2]
+        },
+        z: {
+          [Op.between]: [req.params.z1, req.params.z2]
+        }
+      },
+      offset: (req.params.pagenumber-1)*40,
+      limit:40
+    });
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.json(blogs);
+});
+
 // get blogs page
 route.get('/find/page/:pagenumber', async (req, res, next) => {
   console.log('body::==', req.body);
