@@ -29,13 +29,14 @@ route.get('/find/all', async (req, res, next) => {
 });
 
 route.post('/find/withouthashtag', async (req, res, next) => {
+  const { Op } = require('sequelize');
   console.log('body::==', req.body);
   console.log('params::==', req.params);
   //findall with first character of user is not #
   const blogs = await User.findAll({
     where: {
       username: {
-        [sequelize.Op.notLike]: '#%',
+        [Op.notLike]: '#%',
       },
     },
   });
