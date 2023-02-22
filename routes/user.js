@@ -35,7 +35,7 @@ route.get('/find/withouthashtag', async (req, res, next) => {
   //findall with first character of user is not #
   const blogs = await User.findAll({
     where: {
-      username: {
+      user: {
         [Op.notLike]: '#%',
       },
     },
