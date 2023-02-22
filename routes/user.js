@@ -28,4 +28,19 @@ route.get('/find/all', async (req, res, next) => {
   res.json(blogs);
 });
 
+route.post('/find/withouthashtag', async (req, res, next) => {
+  console.log('body::==', req.body);
+  console.log('params::==', req.params);
+  //findall with first character of user is not #
+  const blogs = await User.findAll({
+    where: {
+      username: {
+        [sequelize.Op.notLike]: '#%',
+      },
+    },
+  });
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.json(blogs);
+});
+
 module.exports = route;
