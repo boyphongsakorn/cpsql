@@ -28,7 +28,7 @@ route.get('/find/all', async (req, res, next) => {
   res.json(blogs);
 });
 
-route.post('/find/withouthashtag', async (req, res, next) => {
+route.get('/find/withouthashtag', async (req, res, next) => {
   const { Op } = require('sequelize');
   console.log('body::==', req.body);
   console.log('params::==', req.params);
