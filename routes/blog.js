@@ -143,6 +143,32 @@ route.get('/find/count/xyz/:x1/:y1/:z1/:x2/:y2/:z2', async (req, res, next) => {
   res.json(blogs);
 });
 
+route.get('/find/block/xyz/:x1/:y1/:z1', async (req, res, next) => {
+  console.log('body::==', req.body);
+  console.log('params::==', req.params);
+  const blogs = await Blog.findAll({
+    where: {
+      x: req.params.x1,
+      y: req.params.y1,
+      z: req.params.z1
+    },
+  });
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.json(blogs);
+});
+
+route.get('/find/block/:id', async (req, res, next) => {
+  console.log('body::==', req.body);
+  console.log('params::==', req.params);
+  const blogs = await Blog.findAll({
+    where: {
+      id: req.params.id
+    },
+  });
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.json(blogs);
+});
+
 // get blogs page
 route.get('/find/page/:pagenumber', async (req, res, next) => {
   console.log('body::==', req.body);
