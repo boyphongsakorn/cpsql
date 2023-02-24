@@ -14,5 +14,8 @@ app.use('/user', userRoute);
 
 const blocknameRoute = require('./routes/blockname');
 app.use('/blockname', blocknameRoute);
+
+const authmeRoute = require('./routes/authme');
+app.use('/authme', authmeRoute);
 // set port & run server
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

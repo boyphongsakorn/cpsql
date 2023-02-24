@@ -11,6 +11,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "dotenv": "^16.0.3",
         "express": "^4.16.4",
         "fastify": "^4.13.0",
         "mariadb": "^3.0.2",
