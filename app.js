@@ -22,12 +22,17 @@ app.use('/authme', authmeRoute);
 const discordsrv_accountsRoute = require('./routes/discordsrv_accounts');
 app.use('/discordsrv_accounts', discordsrv_accountsRoute);
 
+const discordmclinkRoute = require('./routes/discordmclink');
+app.use('/discordmclink', discordmclinkRoute);
+
 app.all('*', (req, res) => {
     res.set('Access-Control-Allow-Origin','https://bpminecraft.com');
     res.set('Access-Control-Allow-Methods','GET,POST');
     res.set('Access-Control-Allow-Headers','X-Requested-With,Content-Type');
 
-    if ('OPTIONS' == req.method) return res.send(200);
+    if ('OPTIONS' == req.method) {
+        return res.send(200);
+    }
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
