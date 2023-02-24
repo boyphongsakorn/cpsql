@@ -6,8 +6,18 @@ const sequelize = db.sequelize;
 const Chat = db.chat;
 const route = express.Router();
 
-route.get('/history', (req, res) => {
-    Chat.findAll().then((data) => {
+route.get('/history/:id', (req, res) => {
+    Chat.findAll(
+        {
+            where: {
+                user: req.params.id
+            },
+            order: [
+                ['time', 'DESC']
+            ],
+        }
+    ).then((data) => {
+        res.setHeader('Access-Control-Allow-Origin', 'https://bpminecraft.com');
         res.send(data);
     }).catch((err) => {
         res.send(err);
