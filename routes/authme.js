@@ -40,10 +40,10 @@ route.post('/check', async (req, res) => {
         // check if aftersalt is correct as last part of ogpassword
         if (aftersalt === ogpassword.password.split('$')[3]) {
             res.setHeader('Access-Control-Allow-Origin', 'https://bpminecraft.com');
-            res.status(200).json({ result: 'Login success' });
+            res.json({ result: 'Login success' });
         } else {
             res.setHeader('Access-Control-Allow-Origin', 'https://bpminecraft.com');
-            res.status(400).json({ error: 'Username or password is incorrect' });
+            res.json({ error: 'Username or password is incorrect' });
         }
         // check if username and password is correct
         // Mclogin.findOne({
