@@ -19,6 +19,9 @@ const authmeRoute = require('./routes/authme');
 app.use('/authme', authmeRoute);
 // set port & run server
 
+const discordsrv_accountsRoute = require('./routes/discordsrv_accounts');
+app.use('/discordsrv_accounts', discordsrv_accountsRoute);
+
 app.all('*', (req, res) => {
     res.set('Access-Control-Allow-Origin','https://bpminecraft.com');
     res.set('Access-Control-Allow-Methods','GET,POST');
