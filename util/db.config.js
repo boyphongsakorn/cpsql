@@ -21,5 +21,6 @@ db.sequelize = sequelize;
 db.blog = require('../model/blog.js')(sequelize, Sequelize);
 db.user = require('../model/user.js')(sequelize, Sequelize);
 db.blockname = require('../model/blockname.js')(sequelize, Sequelize);
+db.chat = require('../model/chat.js')(sequelize, Sequelize);
 
 module.exports = db;

@@ -25,6 +25,9 @@ app.use('/discordsrv_accounts', discordsrv_accountsRoute);
 const discordmclinkRoute = require('./routes/discordmclink');
 app.use('/discordmclink', discordmclinkRoute);
 
+const chatRoute = require('./routes/chat');
+app.use('/chat', chatRoute);
+
 app.all('*', (req, res) => {
     res.set('Access-Control-Allow-Origin','https://bpminecraft.com');
     res.set('Access-Control-Allow-Methods','GET,POST');
