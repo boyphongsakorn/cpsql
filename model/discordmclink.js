@@ -11,8 +11,16 @@ module.exports = (sequelize, Sequelize) => {
                 field: 'discord',
             },
             uuid: {
-                type: Sequelize.STRING,
+                type: Sequelize.UUID,
                 field: 'uuid',
+            },
+            authme_id: {
+                type: Sequelize.INTEGER,
+                field: 'authme_id',
+            },
+            uuidfrom: {
+                type: Sequelize.STRING,
+                field: 'uuidfrom',
             },
         },{
             timestamps: false,

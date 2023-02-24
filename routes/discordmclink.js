@@ -45,6 +45,8 @@ route.post('/addlink', async (req, res) => {
     console.log('params::==', req.params);
     const discordid = req.body.discordid;
     const minecraftid = req.body.minecraftid;
+    const authme_id = req.body.authme_id;
+    const uuidfrom = req.body.uuidfrom;
     console.log('discordid::==', discordid);
     console.log('minecraftid::==', minecraftid);
     const query = await Discordmclink.findOne({
@@ -66,7 +68,9 @@ route.post('/addlink', async (req, res) => {
         // insert
         const insert = await Discordmclink.create({
             discord: discordid,
-            uuid: minecraftid
+            uuid: minecraftid,
+            authme_id: authme_id,
+            uuidfrom: uuidfrom
         });
         if (insert) {
             res.setHeader('Access-Control-Allow-Origin', 'https://bpminecraft.com');
