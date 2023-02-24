@@ -20,7 +20,7 @@ app.use('/authme', authmeRoute);
 // set port & run server
 
 app.all('*', (req, res) => {
-    res.set('Access-Control-Allow-Origin','http://myapp.com');
+    res.set('Access-Control-Allow-Origin','https://bpminecraft.com');
     res.set('Access-Control-Allow-Methods','GET,POST');
     res.set('Access-Control-Allow-Headers','X-Requested-With,Content-Type');
 
