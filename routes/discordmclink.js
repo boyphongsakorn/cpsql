@@ -5,6 +5,11 @@ const sequelize = db.sequelize;
 const Discordmclink = db.discordmclink;
 const route = express.Router();
 
+//authme
+const amdb = require('../util/authmedb.config.js');
+const amsequelize = amdb.sequelize;
+const Mclogin = amdb.mclogin;
+
 //post check password
 route.get('/checklink', async (req, res) => {
     console.log('body::==', req.body);
@@ -54,6 +59,11 @@ route.post('/link', async (req, res) => {
             discord: discordid
         }
     });
+    const findid = await Mclogin.findOne({
+        where: {
+            username: minecraftid
+        }
+    });
     if (query) {
         res.setHeader('Access-Control-Allow-Origin', 'https://bpminecraft.com');
         res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -65,11 +75,15 @@ route.post('/link', async (req, res) => {
             minecraftid: query.uuid
         });
     } else {
+        let from = 'official'
+        if (minecraftid == null) {
+            from = 'cracked'
+        }
         // insert
         const insert = await Discordmclink.create({
             discord: discordid,
             uuid: minecraftid,
-            authme_id: authme_id,
+            authme_id: findid.id,
             uuidfrom: uuidfrom
         });
         if (insert) {

@@ -62,4 +62,28 @@ route.post('/check', async (req, res) => {
     }
 })
 
+// route.get('/findByName/:username', async (req, res) => {
+//     const username = req.params.username;
+//     const query = await Mclogin.findOne({
+//         where: {
+//             username: username
+//         }
+//     });
+//     if (query) {
+//         res.setHeader('Access-Control-Allow-Origin', '*');
+//         res.json({
+//             status: 200,
+//             message: 'success',
+//             id: query.id,
+//             username: query.username,
+//         });
+//     } else {
+//         res.setHeader('Access-Control-Allow-Origin', '*');
+//         res.json({
+//             status: 404,
+//             message: 'not found',
+//         });
+//     }
+// });
+
 module.exports = route;
