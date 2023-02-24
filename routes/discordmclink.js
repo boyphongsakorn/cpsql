@@ -40,7 +40,7 @@ route.get('/checklink', async (req, res) => {
     }
 });
 
-route.post('/addlink', async (req, res) => {
+route.post('/link', async (req, res) => {
     console.log('body::==', req.body);
     console.log('params::==', req.params);
     const discordid = req.body.discordid;
