@@ -61,7 +61,7 @@ route.post('/link', async (req, res) => {
     });
     const findid = await Mclogin.findOne({
         where: {
-            username: minecraftid
+            username: authme_id
         }
     });
     if (query) {
