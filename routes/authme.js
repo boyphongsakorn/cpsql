@@ -38,11 +38,10 @@ route.post('/check', async (req, res) => {
         const aftersalt = crypto.createHash('sha256').update(passwordwithsalt, 'utf8').digest('hex');
         console.log(aftersalt);
         // check if aftersalt is correct as last part of ogpassword
+        res.setHeader('Access-Control-Allow-Origin', '*');
         if (aftersalt === ogpassword.password.split('$')[3]) {
-            res.setHeader('Access-Control-Allow-Origin', 'https://bpminecraft.com');
             res.json({ result: 'Login success' });
         } else {
-            res.setHeader('Access-Control-Allow-Origin', 'https://bpminecraft.com');
             res.json({ error: 'Username or password is incorrect' });
         }
         // check if username and password is correct
