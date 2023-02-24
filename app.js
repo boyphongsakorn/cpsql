@@ -18,4 +18,17 @@ app.use('/blockname', blocknameRoute);
 const authmeRoute = require('./routes/authme');
 app.use('/authme', authmeRoute);
 // set port & run server
+
+app.all('*', (req, res) => {
+    if (!req.get('Origin')) return next();
+
+    res.set('Access-Control-Allow-Origin','http://myapp.com');
+    res.set('Access-Control-Allow-Methods','GET,POST');
+    res.set('Access-Control-Allow-Headers','X-Requested-With,Content-Type');
+
+    if ('OPTIONS' == req.method) return res.send(200);
+
+    next();
+});
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
