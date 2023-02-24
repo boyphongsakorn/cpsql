@@ -25,4 +25,28 @@ route.get('/history/:id', async (req, res) => {
     });
 });
 
+route.get('/history', async (req, res) => {
+    const { Op } = require('sequelize');
+    //unix yesterday
+    let yesterday = Math.floor(Date.now() / 1000) - 86400;
+    Chat.findAll(
+        {
+            where: {
+                time: {
+                    [Op.gt]: yesterday
+                }
+            },
+            order: [
+                ['time', 'DESC']
+            ],
+        }
+    ).then((data) => {
+        res.setHeader('Access-Control-Allow-Origin', 'https://bpminecraft.com');
+        res.send(data);
+    }).catch((err) => {
+        console.log(err);
+        res.send(err);
+    });
+});
+
 module.exports = route;
