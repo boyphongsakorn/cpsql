@@ -44,4 +44,30 @@ route.get('/find/withouthashtag', async (req, res, next) => {
   res.json(blogs);
 });
 
+route.get('/find/user/:user', async (req, res, next) => {
+  console.log('body::==', req.body);
+  console.log('params::==', req.params);
+  const user = req.params.user;
+  const blogs = await User.findOne({
+    where: {
+      user: user,
+    },
+  });
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.json(blogs);
+});
+
+route.get('/find/uuid/:uuid', async (req, res, next) => {
+  console.log('body::==', req.body);
+  console.log('params::==', req.params);
+  const uuid = req.params.uuid;
+  const blogs = await User.findOne({
+    where: {
+      uuid: uuid,
+    },
+  });
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.json(blogs);
+});
+
 module.exports = route;
