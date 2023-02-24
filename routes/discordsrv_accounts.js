@@ -9,13 +9,14 @@ const route = express.Router();
 route.get('/checklink', async (req, res) => {
     console.log('body::==', req.body);
     console.log('params::==', req.params);
-    const discordid = req.params.discordid;
+    const discordid = req.query.discordid;
+    console.log('discordid::==', discordid);
     const query = await Discordsrv_accounts.findOne({
         where: {
             discord: discordid
         }
     });
-    console.log('query::==', query);
+    //console.log('query::==', query);
     if (query) {
         res.setHeader('Access-Control-Allow-Origin', 'https://bpminecraft.com');
         res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
