@@ -1,8 +1,8 @@
 const env = {
     database: 'mysqlbase',
-    username: 'root',
-    password: 'Team1556th_',
-    host: '192.168.31.210',
+    //username: 'xxx',
+    //password: 'xxx',
+    //host: 'xxx',
     //dialect: 'mysql',
     dialect: 'mariadb',
     pool: {
