@@ -82,6 +82,16 @@ route.post('/link', async (req, res) => {
                 message: 'success',
                 minecraftid: minecraftid
             });
+        } else {
+            res.setHeader('Access-Control-Allow-Origin', 'https://bpminecraft.com');
+            res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+            res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+            res.setHeader('Access-Control-Allow-Credentials', true);
+            res.json({
+                status: 500,
+                message: 'error',
+                minecraftid: null
+            });
         }
     }
 });
