@@ -31,6 +31,9 @@ app.use('/chat', chatRoute);
 const user_logRoute = require('./routes/user_log');
 app.use('/user_log', user_logRoute);
 
+const webchatRoute = require('./routes/webchat');
+app.use('/webchat', webchatRoute);
+
 app.all('*', (req, res) => {
     res.set('Access-Control-Allow-Origin','https://bpminecraft.com');
     res.set('Access-Control-Allow-Methods','GET,POST');

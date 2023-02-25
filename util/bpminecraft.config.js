@@ -23,5 +23,6 @@ db.sequelize = sequelize;
 // db.user = require('../model/user.js')(sequelize, Sequelize);
 // db.blockname = require('../model/blockname.js')(sequelize, Sequelize);
 db.discordmclink = require('../model/discordmclink.js')(sequelize, Sequelize);
+db.webchat = require('../model/webchat.js')(sequelize, Sequelize);
 
 module.exports = db;
