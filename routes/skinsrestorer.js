@@ -36,6 +36,7 @@ route.get('/getskin/:Nick', async (req, res) => {
         }
     }).then((data) => {
         res.setHeader('Access-Control-Allow-Origin', 'https://bpminecraft.com');
+        res.setHeader('Content-Type', 'application/json');
         res.send(data);
     }).catch((err) => {
         console.log(err);
@@ -50,6 +51,7 @@ route.get('/skinlink/:Nick', async (req, res) => {
         }
     }).then((data) => {
         res.setHeader('Access-Control-Allow-Origin', 'https://bpminecraft.com');
+        res.setHeader('Content-Type', 'application/json');
         res.send(data);
     }).catch((err) => {
         console.log(err);
