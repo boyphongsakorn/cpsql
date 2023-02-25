@@ -44,3 +44,5 @@ route.post('/newchat', async (req, res) => {
         res.send(err);
     });
 });
+
+module.exports = route;
