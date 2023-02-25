@@ -23,9 +23,10 @@ route.post('/addskin', async (req, res) => {
         }
     });
     res.setHeader('Access-Control-Allow-Origin', 'https://bpminecraft.com');
-    res.send(addskin
-        +updateplayer
-    );
+    res.send(JSON.stringify({
+        "status": "success",
+        "message": "Skin added"
+    }));
 });
 
 route.get('/getskin/:Nick', async (req, res) => {
