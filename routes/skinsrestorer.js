@@ -6,14 +6,33 @@ const Skinsrestorer_players = db.skinsrestorer_players;
 const route = express.Router();
 
 route.post('/addskin', async (req, res) => {
-    //create now unix timestamp
-    let timestamp = Math.floor(Date.now() / 1000);
-    const addskin = await Skinsrestorer_skins.create({
-            Nick: req.body.Nick+"-web",
+    //check if skin exists
+    const skin = await Skinsrestorer_skins.findOne({
+        where: {
+            Nick: req.body.Nick+"-web"
+        }
+    });
+    let addskin
+        //create now unix timestamp
+        let timestamp = Math.floor(Date.now() / 1000);
+    if (skin) {
+        addskin = await Skinsrestorer_skins.update({
             Value: req.body.Value,
             Signature: req.body.Signature,
             timestamp: timestamp,
-        })
+        }, {
+            where: {
+                Nick: req.body.Nick+"-web"
+            }
+        });
+    }else{
+        addskin = await Skinsrestorer_skins.create({
+                Nick: req.body.Nick+"-web",
+                Value: req.body.Value,
+                Signature: req.body.Signature,
+                timestamp: timestamp,
+            })
+    }
     //update skinsrestorer_players
     const updateplayer = await Skinsrestorer_players.update({
         Skin: req.body.Nick+"-web",
@@ -22,11 +41,19 @@ route.post('/addskin', async (req, res) => {
             Nick: req.body.Nick
         }
     });
-    res.setHeader('Access-Control-Allow-Origin', 'https://bpminecraft.com');
-    res.send(JSON.stringify({
-        "status": "success",
-        "message": "Skin added"
-    }));
+    if (updateplayer) {
+        res.setHeader('Access-Control-Allow-Origin', 'https://bpminecraft.com');
+        res.send(JSON.stringify({
+            "status": "success",
+            "message": "Skin added"
+        }));
+    }else{
+        res.setHeader('Access-Control-Allow-Origin', 'https://bpminecraft.com');
+        res.send(JSON.stringify({
+            "status": "error",
+            "message": "Skin not added"
+        }));
+    }
 });
 
 route.get('/getskin/:Nick', async (req, res) => {
