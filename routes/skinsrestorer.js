@@ -8,18 +8,24 @@ const route = express.Router();
 route.post('/addskin', async (req, res) => {
     //create now unix timestamp
     let timestamp = Math.floor(Date.now() / 1000);
-    Skinsrestorer_skins.create({
-        Nick: req.body.Nick,
-        Value: req.body.Value,
-        Signature: req.body.Signature,
-        timestamp: timestamp,
-    }).then((data) => {
-        res.setHeader('Access-Control-Allow-Origin', 'https://bpminecraft.com');
-        res.send(data);
-    }).catch((err) => {
-        console.log(err);
-        res.send(err);
+    const addskin = await Skinsrestorer_skins.create({
+            Nick: req.body.Nick+"-web",
+            Value: req.body.Value,
+            Signature: req.body.Signature,
+            timestamp: timestamp,
+        })
+    //update skinsrestorer_players
+    const updateplayer = await Skinsrestorer_players.update({
+        Skin: req.body.Nick+"-web",
+    }, {
+        where: {
+            Nick: req.body.Nick
+        }
     });
+    res.setHeader('Access-Control-Allow-Origin', 'https://bpminecraft.com');
+    res.send(addskin
+        +updateplayer
+    );
 });
 
 route.get('/getskin/:Nick', async (req, res) => {
