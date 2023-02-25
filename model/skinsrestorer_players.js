@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Skinsrestorer_players = sequelize.define('skinsrestorer_players',
+    const Skinsrestorer_players = sequelize.define('Players',
         {
             Nick: {
                 type: Sequelize.STRING,
