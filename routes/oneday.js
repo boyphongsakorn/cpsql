@@ -23,4 +23,24 @@ route.get('/allevent', async (req, res) => {
     });
 });
 
+route.get('/damage/:event_id', async (req, res) => {
+    Dragon_damage.findAll(
+        {
+            where: {
+                event_id: req.params.event_id
+            },
+            order: [
+                ['alldamage', 'DESC']
+            ],
+        }
+    ).then((data) => {
+        res.setHeader('Access-Control-Allow-Origin', 'https://bpminecraft.com');
+        res.send(data);
+    }).catch((err) => {
+        console.log(err);
+        res.setHeader('Access-Control-Allow-Origin', 'https://bpminecraft.com');
+        res.send(err);
+    });
+});
+
 module.exports = route;
