@@ -37,6 +37,9 @@ app.use('/webchat', webchatRoute);
 const skinsrestorerRoute = require('./routes/skinsrestorer');
 app.use('/skinsrestorer', skinsrestorerRoute);
 
+const onedayRoute = require('./routes/oneday');
+app.use('/oneday', onedayRoute);
+
 app.all('*', (req, res) => {
     res.set('Access-Control-Allow-Origin','https://bpminecraft.com');
     res.set('Access-Control-Allow-Methods','GET,POST');
