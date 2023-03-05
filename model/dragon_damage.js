@@ -19,7 +19,7 @@ module.exports = (sequelize, Sequelize) => {
                 field: 'alldamage'
             },
             lastdamage : {
-                type: Sequelize.DATETIME,
+                type: Sequelize.DATE,
                 field: 'lastdamage'
             },
             event_id : {
