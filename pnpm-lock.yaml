@@ -16,7 +16,7 @@ dependencies:
     version: 4.23.2
   mariadb:
     specifier: ^3.0.2
-    version: 3.2.0
+    version: 3.2.1
   mysql2:
     specifier: ^3.1.2
     version: 3.6.1
@@ -25,7 +25,7 @@ dependencies:
     version: 3.0.1
   sequelize:
     specifier: ^6.11.0
-    version: 6.33.0(mariadb@3.2.0)(mysql2@3.6.1)
+    version: 6.33.0(mariadb@3.2.1)(mysql2@3.6.1)
 
 packages:
 
@@ -636,6 +636,11 @@ packages:
     resolution: {integrity: sha512-GKSNGeNAtw8IryjjkhZxuKB3JzlcLTwjtiQCHKvqQet81I93kXslhDQruGI/QsddO83mcDToBVy7GqGS/zYf/A==}
     dev: false
 
+  /lru-cache@10.0.1:
+    resolution: {integrity: sha512-IJ4uwUTi2qCccrioU6g9g/5rvvVl13bsdczUUcqbciD9iLr095yj8DQKdObriEvuNSx325N1rV1O0sJFszx75g==}
+    engines: {node: 14 || >=16.14}
+    dev: false
+
   /lru-cache@6.0.0:
     resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}
     engines: {node: '>=10'}
@@ -653,15 +658,15 @@ packages:
     engines: {node: '>=16.14'}
     dev: false
 
-  /mariadb@3.2.0:
-    resolution: {integrity: sha512-IH2nidQat1IBMxP5gjuNxG6dADtz1PESEC6rKrcATen5v3ngFyZITjehyYiwNfz3zUNQupfYmVntz93M+Pz8pQ==}
+  /mariadb@3.2.1:
+    resolution: {integrity: sha512-EWCsvu8IwK5WRYPJ9iRekFiBfHfKB/wBcUwAzbhQKhSc6ivbvLcO/cktkYTCz3HVoGNYVWhBN38485Cq3qMSbQ==}
     engines: {node: '>= 12'}
     dependencies:
       '@types/geojson': 7946.0.10
       '@types/node': 17.0.45
       denque: 2.1.0
       iconv-lite: 0.6.3
-      lru-cache: 7.16.1
+      lru-cache: 10.0.1
     dev: false
 
   /media-typer@0.3.0:
@@ -998,7 +1003,7 @@ packages:
     engines: {node: '>= 10.0.0'}
     dev: false
 
-  /sequelize@6.33.0(mariadb@3.2.0)(mysql2@3.6.1):
+  /sequelize@6.33.0(mariadb@3.2.1)(mysql2@3.6.1):
     resolution: {integrity: sha512-GkeCbqgaIcpyZ1EyXrDNIwktbfMldHAGOVXHGM4x8bxGSRAOql5htDWofPvwpfL/FoZ59CaFmfO3Mosv1lDbQw==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
@@ -1037,7 +1042,7 @@ packages:
       dottie: 2.0.6
       inflection: 1.13.4
       lodash: 4.17.21
-      mariadb: 3.2.0
+      mariadb: 3.2.1
       moment: 2.29.4
       moment-timezone: 0.5.43
       mysql2: 3.6.1
