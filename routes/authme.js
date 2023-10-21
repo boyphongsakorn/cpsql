@@ -1,8 +1,10 @@
 const express = require('express');
+const bpdb = require('../util/bpminecraft.config.js');
 const db = require('../util/authmedb.config');
 // define variable
 const sequelize = db.sequelize;
 const Mclogin = db.mclogin;
+const Discordmclink = bpdb.discordmclink;
 const route = express.Router();
 
 // post check password
@@ -30,6 +32,9 @@ route.post('/check', async (req, res) => {
                 username: requsername
             }
         })
+        if (ogpassword === null) {
+            return res.status(400).json({ error: 'Username is incorrect' });
+        }
         //split password by $ and get the second part
         const ogpassword2 = ogpassword.password.split('$')[2];
         // add ogpassword2 to password
@@ -40,7 +45,24 @@ route.post('/check', async (req, res) => {
         // check if aftersalt is correct as last part of ogpassword
         res.setHeader('Access-Control-Allow-Origin', '*');
         if (aftersalt === ogpassword.password.split('$')[3]) {
-            res.json({ result: 'Login success' });
+            //remove password from ogpassword
+            let tempinfo = ogpassword.toJSON();
+            delete tempinfo.password;
+            const query = await Discordmclink.findOne({
+                where: {
+                    authme_id: tempinfo.id
+                }
+            });
+            if (query) {
+                tempinfo.discord = query.discord;
+                tempinfo.minecraftuuid = query.uuid;
+                tempinfo.linkdiscord = true;
+            } else {
+                tempinfo.discord = null;
+                tempinfo.minecraftuuid = null;
+                tempinfo.linkdiscord = false;
+            }
+            res.json({ result: 'Login success', info: tempinfo });
         } else {
             res.json({ error: 'Username or password is incorrect' });
         }
