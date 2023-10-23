@@ -171,11 +171,38 @@ route.get('/find/block/:id', async (req, res, next) => {
 
 // get blogs page
 route.get('/find/page/:pagenumber', async (req, res, next) => {
+  const { Op } = require('sequelize');
   console.log('body::==', req.body);
   console.log('params::==', req.params);
-  const blogs = await Blog.findAll({offset: (req.params.pagenumber-1)*40,limit:40});
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.json(blogs);
+  console.log('query::==', req.query);
+  //get rowid from last row
+  const lastRow = await Blog.findOne({
+    where: {
+      rowid: {
+        [Op.gt]: (req.params.pagenumber-1)*40
+      }
+    },
+    order: [ [ 'rowid', 'DESC' ]],
+    offset: req.query.allcount-(req.params.pagenumber-1)*40,
+    limit: 1    
+  });
+  if(lastRow){
+    console.log('lastRow::==', lastRow);
+    const blogs = await Blog.findAll({
+      where: {
+        rowid: {
+          [Op.gt]: lastRow.id
+        }
+      },
+      limit: 40
+    });
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.json(blogs);
+  } else {
+    const blogs = await Blog.findAll({offset: (req.params.pagenumber-1)*40,limit:40});
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.json(blogs);
+  }
 });
 
 // count blogs all
