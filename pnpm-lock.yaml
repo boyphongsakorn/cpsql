@@ -22,7 +22,7 @@ dependencies:
     version: 3.6.5
   nodemon:
     specifier: ^3.0.1
-    version: 3.0.2
+    version: 3.0.3
   sequelize:
     specifier: ^6.11.0
     version: 6.35.2(mariadb@3.2.3)(mysql2@3.6.5)
@@ -774,8 +774,8 @@ packages:
     engines: {node: '>= 0.6'}
     dev: false
 
-  /nodemon@3.0.2:
-    resolution: {integrity: sha512-9qIN2LNTrEzpOPBaWHTm4Asy1LxXLSickZStAQ4IZe7zsoIpD/A7LWxhZV3t4Zu352uBcqVnRsDXSMR2Sc3lTA==}
+  /nodemon@3.0.3:
+    resolution: {integrity: sha512-7jH/NXbFPxVaMwmBCC2B9F/V6X1VkEdNgx3iu9jji8WxWcvhMWkmhNWhI5077zknOnZnBzba9hZP6bCPJLSReQ==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
