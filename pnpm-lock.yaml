@@ -19,13 +19,13 @@ dependencies:
     version: 3.3.0
   mysql2:
     specifier: ^3.1.2
-    version: 3.9.5
+    version: 3.9.8
   nodemon:
     specifier: ^3.0.1
     version: 3.1.1
   sequelize:
     specifier: ^6.11.0
-    version: 6.37.3(mariadb@3.3.0)(mysql2@3.9.5)
+    version: 6.37.3(mariadb@3.3.0)(mysql2@3.9.8)
 
 packages:
 
@@ -750,8 +750,8 @@ packages:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
     dev: false
 
-  /mysql2@3.9.5:
-    resolution: {integrity: sha512-idfCjWgJEIU2zToiAsy1UO9RQ+VvCrbfB9458LrComY7mJmAIvjdD+/58VmNLFUeQpKE4xZZqD+yZe3tlu62NQ==}
+  /mysql2@3.9.8:
+    resolution: {integrity: sha512-+5JKNjPuks1FNMoy9TYpl77f+5frbTklz7eb3XDwbpsERRLEeXiW2PDEkakYF50UuKU2qwfGnyXpKYvukv8mGA==}
     engines: {node: '>= 8.0'}
     dependencies:
       denque: 2.1.0
@@ -1030,7 +1030,7 @@ packages:
     engines: {node: '>= 10.0.0'}
     dev: false
 
-  /sequelize@6.37.3(mariadb@3.3.0)(mysql2@3.9.5):
+  /sequelize@6.37.3(mariadb@3.3.0)(mysql2@3.9.8):
     resolution: {integrity: sha512-V2FTqYpdZjPy3VQrZvjTPnOoLm0KudCRXfGWp48QwhyPPp2yW8z0p0sCYZd/em847Tl2dVxJJ1DR+hF+O77T7A==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
@@ -1072,7 +1072,7 @@ packages:
       mariadb: 3.3.0
       moment: 2.29.4
       moment-timezone: 0.5.43
-      mysql2: 3.9.5
+      mysql2: 3.9.8
       pg-connection-string: 2.6.2
       retry-as-promised: 7.0.4
       semver: 7.5.4
