@@ -1,18 +1,17 @@
 module.exports = (sequelize, Sequelize) => {
-    const Skinsrestorer_skins = sequelize.define('Skins',
+    const Skinsrestorer_skins = sequelize.define('sr_player_skins',
         {
             Nick: {
                 type: Sequelize.STRING,
-                field: 'Nick',
-                primaryKey: true
+                field: 'last_known_name'
             },
             Value: {
                 type: Sequelize.STRING,
-                field: 'Value',
+                field: 'value',
             },
             Signature: {
                 type: Sequelize.STRING,
-                field: 'Signature',
+                field: 'signature',
             },
             timestamp: {
                 type: Sequelize.STRING,
