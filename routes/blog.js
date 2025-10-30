@@ -175,33 +175,40 @@ route.get('/find/page/:pagenumber', async (req, res, next) => {
   console.log('body::==', req.body);
   console.log('params::==', req.params);
   console.log('query::==', req.query);
-  //get rowid from last row
-  if(req.query.allcount){
-    const lastRow = await Blog.findOne({
-      where: {
-        rowid: {
-          [Op.gt]: (req.params.pagenumber-1)*40
-        }
-      },
-      order: [ [ 'rowid', 'DESC' ]],
-      offset: req.query.allcount-(req.params.pagenumber-1)*40,
-      limit: 1    
-    });
-    if(lastRow){
-      console.log('lastRow::==', lastRow);
-      const blogs = await Blog.findAll({
-        where: {
-          rowid: {
-            [Op.gt]: lastRow.id
-          }
-        },
-        limit: 40
-      });
-      res.setHeader('Access-Control-Allow-Origin', '*');
-      res.json(blogs);
-    }
+  
+  const pageNumber = parseInt(req.params.pagenumber);
+  const pageSize = 40;
+  const offset = (pageNumber - 1) * pageSize;
+  
+  // For large page numbers (>50), use an optimized query
+  if (pageNumber > 50) {
+    // Use a deferred join technique - select only IDs with OFFSET, then join
+    // This is much faster because we're only offsetting on the index, not full rows
+    const blogs = await sequelize.query(
+      `SELECT b.* FROM co_block b 
+       INNER JOIN (
+         SELECT rowid FROM co_block 
+         ORDER BY rowid ASC 
+         LIMIT :limit OFFSET :offset
+       ) AS t ON b.rowid = t.rowid 
+       ORDER BY b.rowid ASC`,
+      {
+        replacements: { limit: pageSize, offset: offset },
+        type: sequelize.QueryTypes.SELECT,
+        model: Blog,
+        mapToModel: true
+      }
+    );
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.json(blogs);
   } else {
-    const blogs = await Blog.findAll({offset: (req.params.pagenumber-1)*40,limit:40});
+    // For early pages, use standard offset pagination (performs well for small offsets)
+    // Add ORDER BY for consistent pagination results
+    const blogs = await Blog.findAll({
+      order: [['id', 'ASC']],
+      offset: offset,
+      limit: pageSize
+    });
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.json(blogs);
   }
