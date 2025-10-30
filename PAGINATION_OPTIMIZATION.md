@@ -25,6 +25,8 @@ INNER JOIN (
 ORDER BY b.rowid ASC
 ```
 
+**Note**: In the Sequelize model, `rowid` is the actual database column name, mapped to the field `id` in the model. The raw SQL query uses the database column name `rowid`.
+
 ### How It Works
 1. **Inner subquery**: Selects only the primary key (`rowid`) with OFFSET
    - This is fast because it's covered by the primary key index
@@ -42,7 +44,12 @@ ORDER BY b.rowid ASC
 ## Database Index Recommendations
 
 ### Required Index
-The primary key index on `rowid` is essential and should already exist:
+The primary key index on `rowid` is essential for this optimization to work. Verify it exists:
+```sql
+SHOW INDEX FROM co_block WHERE Key_name = 'PRIMARY';
+```
+
+If it doesn't exist (which is unlikely), create it:
 ```sql
 ALTER TABLE co_block ADD PRIMARY KEY (rowid);
 ```
