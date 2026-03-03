@@ -310,8 +310,8 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
-  /dottie@2.0.6:
-    resolution: {integrity: sha512-iGCHkfUc5kFekGiqhe8B/mdaurD+lakO9txNnTvKtA6PISrw86LgqHvRzWYPyoE2Ph5aMIrCw9/uko6XHTKCwA==}
+  /dottie@2.0.7:
+    resolution: {integrity: sha512-7lAK2A0b3zZr3UC5aE69CPdCFR4RHW1o2Dr74TqFykxkUCBXSRJum/yPc7g8zRHJqWKomPLHwFLLoUnn8PXXRg==}
     dev: false
 
   /dunder-proto@1.0.1:
@@ -1083,7 +1083,7 @@ packages:
       '@types/debug': 4.1.10
       '@types/validator': 13.11.5
       debug: 4.3.4(supports-color@5.5.0)
-      dottie: 2.0.6
+      dottie: 2.0.7
       inflection: 1.13.4
       lodash: 4.17.23
       mariadb: 3.3.1
